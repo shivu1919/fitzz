@@ -1,15 +1,20 @@
 import React, { use, useState } from 'react'
 import style from '../styles/Home.module.css'
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
 
   const[weight, setWeight] = useState(50)
   const[feet,setFeet] = useState(5)
   const[inch, setInch] = useState(5)
-  const[bmi, setBmi] = useState(0)
+  const[bmi, setBmi] = useState()
   const[bmiresult, setBmiResult] = useState()
+  const navigate = useNavigate()
 
+  const goToNext=()=>{
+      navigate("/signup")
+  }
 
   const calcBMI=()=>{
       let f = parseInt(feet)
@@ -18,6 +23,16 @@ const Home = () => {
       let w = parseInt(weight)
       let result = w / (height*height)
       setBmi(result)
+      
+      if(result<18.9){
+        setBmiResult("Underweight")
+      }
+      else if(result>=18.9 && result <=24.9){
+        setBmiResult("Normal")
+      }
+      else{
+        setBmiResult("Over Weight")
+      }
   }
 
 
@@ -29,22 +44,27 @@ const Home = () => {
 
           <div className={style.bmi}>
 
-                <h1>BMI Calculator</h1>
+                <h1 className={style.text}>BMI Calculator</h1>
 
                <div className={style.bmi_first}>
-                  <h2>Height   {feet} ft</h2>
+                  <h2 className={style.text}>Height   {feet} ft</h2>
                   <input 
                   id={style.inp} 
                   min='2'
                   max='7'
                   type="range" 
                   value={feet}
-                  onChange={(e)=>setFeet(e.target.value)}
+                  onChange={(e)=>{
+                    setFeet(e.target.value)
+                    calcBMI()
+                  }
+                    
+                  }
                   />
 
  
 
-                  <h2>Height  {inch} in</h2>
+                  <h2 className={style.text}>Height  {inch} in</h2>
 
                   <input 
                   id={style.inp}
@@ -52,10 +72,13 @@ const Home = () => {
                   max='11' 
                   type="range" 
                   value={inch}
-                  onChange={(e)=>setInch(e.target.value)}
+                  onChange={(e)=>{
+                    setInch(e.target.value)
+                    calcBMI()
+                  }}
                   
                   />
-                  <h2>Weight    {weight} kg</h2>
+                  <h2 className={style.text}>Weight    {weight} kg</h2>
                   <input 
                   value={weight}  
                   id={style.inp} 
@@ -63,21 +86,26 @@ const Home = () => {
                   min='0' 
                   max='120'
                   step='0.1'
-                  onChange={(e)=>setWeight(e.target.value)}
+                  onChange={(e)=>{
+
+                    setWeight(e.target.value)
+                    calcBMI()
+                  }}
                   
                   />
 
-                <Button onClick={calcBMI} variant="contained">Calculate BMI</Button>;
+
                   
                </div>
 
-                <h1>BMI: {bmi}</h1>
-                <p>{bmiresult}</p>
+                <h1 className={style.text}>BMI: {bmi}</h1>
+                <p className={style.text}>{bmiresult}</p>
 
           </div>
 
           <div className={style.second}>
-
+                <h1 className={style.text}>Continue to Application</h1>
+                <Button onClick={goToNext} variant="contained">Continue</Button>
           </div>
       </div>
    </>

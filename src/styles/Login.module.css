@@ -1,0 +1,33 @@
+.container{
+    width: 100vw;
+    height:100vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h2{
+    color:black;
+    text-align: center;
+}
+
+form{
+    padding: 30px;
+    width:400px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+label{
+    float: left;
+    
+}
+
+input{
+    float: right;
+    width:220px;
+    height: 35px;
+    border: 1px solid black;
+    padding-left: 10px;
+}
