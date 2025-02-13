@@ -1,5 +1,5 @@
-import React, { use, useState } from 'react'
-import style from '../styles/Home.module.css'
+import React, {useState } from 'react'
+import sty from '../styles/Home.module.css'
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,8 +8,8 @@ const Home = () => {
   const[weight, setWeight] = useState(50)
   const[feet,setFeet] = useState(5)
   const[inch, setInch] = useState(5)
-  const[bmi, setBmi] = useState()
-  const[bmiresult, setBmiResult] = useState()
+  const[bmi, setBmi] = useState('17.791587465635907')
+  const[bmiresult, setBmiResult] = useState('underweight')
   const navigate = useNavigate()
 
   const goToNext=()=>{
@@ -39,17 +39,17 @@ const Home = () => {
 
   return (
    <>
-      <div className={style.container}>
+      <div className={sty.box}>
 
 
-          <div className={style.bmi}>
+          <div className={sty.bmi}>
 
-                <h1 className={style.text}>BMI Calculator</h1>
+                <h1 className={sty.text}>BMI Calculator</h1>
 
-               <div className={style.bmi_first}>
-                  <h2 className={style.text}>Height   {feet} ft</h2>
+               <div className={sty.bmi_first}>
+                  <h2 className={sty.text}>Height   {feet} ft</h2>
                   <input 
-                  id={style.inp} 
+                  id={sty.inp} 
                   min='2'
                   max='7'
                   type="range" 
@@ -64,10 +64,10 @@ const Home = () => {
 
  
 
-                  <h2 className={style.text}>Height  {inch} in</h2>
+                  <h2 className={sty.text}>Height  {inch} in</h2>
 
                   <input 
-                  id={style.inp}
+                  id={sty.inp}
                   min='0'
                   max='11' 
                   type="range" 
@@ -78,10 +78,10 @@ const Home = () => {
                   }}
                   
                   />
-                  <h2 className={style.text}>Weight    {weight} kg</h2>
+                  <h2 className={sty.text}>Weight    {weight} kg</h2>
                   <input 
                   value={weight}  
-                  id={style.inp} 
+                  id={sty.inp} 
                   type='range' 
                   min='0' 
                   max='120'
@@ -98,13 +98,13 @@ const Home = () => {
                   
                </div>
 
-                <h1 className={style.text}>BMI: {bmi}</h1>
-                <p className={style.text}>{bmiresult}</p>
+                <h1 className={sty.text}>BMI: {bmi}</h1>
+                <p className={sty.text}>{bmiresult}</p>
 
           </div>
 
-          <div className={style.second}>
-                <h1 className={style.text}>Continue to Application</h1>
+          <div className={sty.second}>
+                <h1 className={sty.text}>Continue to Application</h1>
                 <Button onClick={goToNext} variant="contained">Continue</Button>
           </div>
       </div>
